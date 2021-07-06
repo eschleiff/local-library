@@ -1,0 +1,81 @@
+<h1>Book Library Homepage</h1>
+
+<div class="row">
+    {{#each books}}
+    <div class="col-sm-3">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h3 class="card-title">{{this.title}}</h5>
+                <h5 class="card-subtitle mb-2 text-muted">{{this.author}}</h6>
+                <p class="card-text">{{this.pages}} pages</p>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Read</label>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-warning" href="/update/:_id" type="button"data-bs-toggle="modal" data-bs-target="#editBookModal">Edit</a>
+                    <a class="btn btn-danger" href="/delete/:_id">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+
+<hr>
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newBookModal">
+    Add New Book
+</button>
+
+{{!-- New Book Modal --}}
+<div class="modal fade" id="newBookModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Add New Book</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+            </div>
+            <form action="/addBook" method="POST">
+                <div class="modal-body">
+                    <input id="bookTitle" name="bookTitle" type="text" placeholder="Title">
+                    <input id="bookAuthor" name="bookAuthor" type="text" placeholder="Author">
+                    <input id="bookPages" name="bookPages" type="text" placeholder="Pages">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Read</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{!-- Edit Book Modal --}}
+<div class="modal fade" id="editBookModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Book</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+            </div>
+            <form action="/update" method="POST">
+                <div class="modal-body">
+                    <input id="bookTitle" name="bookTitle" type="text" value="{{foundBook.title}}">
+                    <input id="bookAuthor" name="bookAuthor" type="text" value="{{book.author}}">
+                    <input id="bookPages" name="bookPages" type="text" value='{{book.pages}}'>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
