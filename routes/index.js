@@ -4,7 +4,7 @@ const library = require('../book');
 router.get('/', async (req, res) => {
     let books = await library.myLibrary;
     
-    console.log(books);
+    //console.log(books);
 
     res.render('home', { books });
 })
@@ -22,10 +22,11 @@ router.get('/delete/:_id', async (req, res) => {
     res.redirect('/');
 })
 
-router.get('/update/:_id', async (req, res) => {
+router.post('/update', async (req, res) => {
     let books = await library.myLibrary;
-    let foundBook = books.find(book => book.id === req.params._id);
+    let foundBook = books.findByID(req.params.id)
 
+    //console.log(books)
     console.log(foundBook);
     res.render('home', { foundBook });
 })

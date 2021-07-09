@@ -13,7 +13,7 @@
                     <label class="form-check-label" for="flexSwitchCheckChecked">Read</label>
                 </div>
                 <div class="card-footer">
-                    <a class="btn btn-warning" href="/update/:_id" type="button"data-bs-toggle="modal" data-bs-target="#editBookModal">Edit</a>
+                    <a class="btn btn-warning" href="/update/{{ this.id }}" type="button"data-bs-toggle="modal" data-bs-target="#editBookModal">Edit</a>
                     <a class="btn btn-danger" href="/delete/:_id">Delete</a>
                 </div>
             </div>
@@ -67,9 +67,9 @@
             </div>
             <form action="/update" method="POST">
                 <div class="modal-body">
-                    <input id="bookTitle" name="bookTitle" type="text" value="{{foundBook.title}}">
-                    <input id="bookAuthor" name="bookAuthor" type="text" value="{{book.author}}">
-                    <input id="bookPages" name="bookPages" type="text" value='{{book.pages}}'>
+                    <input id="bookTitle" name="bookTitle" type="text" value="{{books.title}}">
+                    <input id="bookAuthor" name="bookAuthor" type="text" value="{{books.author}}">
+                    <input id="bookPages" name="bookPages" type="text" value='{{books.pages}}'>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
